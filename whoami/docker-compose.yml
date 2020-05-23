@@ -12,10 +12,10 @@ services:
 
     labels:
       - traefik.enable=true
-      - traefik.http.routers.whoami.rule=Host(`<SERVICE>.<YOUR.DOMAIN>")
-      - traefik.http.routers.whoami.entrypoints=web-secure
-      - traefik.http.routers.whoami.tls=true
-      - traefik.http.routers.whoami.middlewares=secHeaders@file
+      - "traefik.http.routers.${NAME}.rule=Host(`${NAME}.${DOMAIN}`)"
+      - "traefik.http.routers.${NAME}.entrypoints=web-secure"
+      - "traefik.http.routers.${NAME}.tls=true"
+      - "traefik.http.routers.${NAME}.middlewares=secHeaders@file"
 
 networks:
   default:
