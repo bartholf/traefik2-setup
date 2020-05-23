@@ -1,0 +1,43 @@
+---
+version: '3.5'
+
+services:
+  traefik:
+    image: traefik:v2.2
+
+    restart: always
+
+    networks:
+      - default
+
+    command:
+      - --accesslog=true
+      - --accesslog.filePath=/var/log/access_log
+      - --accesslog.format='json'
+      - --api.insecure=true
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
+      - --entrypoints.web.address=:80
+      - --entrypoints.web-secure.address=:443
+      - --providers.file.directory=/etc/traefik/dynamic_conf
+
+    ports:
+      - 443:443
+      - 80:80
+      - 8080:8080
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./certs:/etc/traefik/certs:ro
+      - ./config.yml:/etc/traefik/dynamic_conf/conf.yml:ro
+      - ./log/access_log:/var/log/access_log
+
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=gateway
+      - traefik.frontend.passHostHeader=true
+
+networks:
+  default:
+    external:
+      name: gateway

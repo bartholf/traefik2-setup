@@ -1,0 +1,23 @@
+---
+version: '3.5'
+
+services:
+  whoami:
+    image: "containous/whoami"
+
+    restart: unless-stopped
+
+    networks:
+      - default
+
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.whoami.rule=Host(`<SERVICE>.<YOUR.DOMAIN>")
+      - traefik.http.routers.whoami.entrypoints=web-secure
+      - traefik.http.routers.whoami.tls=true
+      - traefik.http.routers.whoami.middlewares=secHeaders@file
+
+networks:
+  default:
+    external:
+      name: gateway
