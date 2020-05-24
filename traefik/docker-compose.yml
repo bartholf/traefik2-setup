@@ -27,6 +27,7 @@ services:
 
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ../../.htpasswd:/shared/.htpasswd:ro
       - ./certs:/etc/traefik/certs:ro
       - ./config.yml:/etc/traefik/dynamic_conf/conf.yml:ro
       - ./log/access_log:/var/log/access_log

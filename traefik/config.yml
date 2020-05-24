@@ -36,3 +36,6 @@ http:
         stsPreload: true
         stsSeconds: 15768000
         customFrameOptionsValue: "SAMEORIGIN"
+    auth:
+      basicAuth:
+        usersFile: /shared/.htpasswd
