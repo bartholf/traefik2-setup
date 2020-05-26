@@ -39,3 +39,4 @@ http:
     auth:
       basicAuth:
         usersFile: /shared/.htpasswd
+        removeHeader: true

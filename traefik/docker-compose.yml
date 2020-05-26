@@ -15,10 +15,10 @@ services:
       - --accesslog.filePath=/var/log/access_log
       - --accesslog.format='json'
       - --api.insecure=true
-      - --providers.docker=true
-      - --providers.docker.exposedbydefault=false
       - --entrypoints.web.address=:80
       - --entrypoints.web-secure.address=:443
+      - --providers.docker=true
+      - --providers.docker.exposedbydefault=false
       - --providers.file.directory=/etc/traefik/dynamic_conf
 
     ports:
