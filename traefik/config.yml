@@ -25,6 +25,15 @@ tls:
 
 http:
   middlewares:
+    auth:
+      basicAuth:
+        usersFile: /shared/.htpasswd
+        removeHeader: true
+    internal:
+      ipWhiteList:
+        sourceRange:
+          - 192.168.1.0/24
+          - 10.10.10.0/24
     secHeaders:
       headers:
         browserXssFilter: true
@@ -36,7 +45,3 @@ http:
         stsPreload: true
         stsSeconds: 15768000
         customFrameOptionsValue: "SAMEORIGIN"
-    auth:
-      basicAuth:
-        usersFile: /shared/.htpasswd
-        removeHeader: true

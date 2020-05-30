@@ -12,7 +12,6 @@ services:
       - "traefik.http.routers.${NAME}.rule=Host(`${NAME}.${DOMAIN}`)"
       - "traefik.http.routers.${NAME}.entrypoints=web-secure"
       - "traefik.http.routers.${NAME}.tls=true"
-      - "traefik.http.routers.${NAME}.middlewares=secHeaders@file"
 
 networks:
   default:
